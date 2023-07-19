@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test E</title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="toggle.js"></script>
+  <style>
+    #toggle-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      background-color: #fff;
+      transform: translate(-50%, -170px);
+      padding: 10px 20px;
+      z-index: 999;
+    }
+
+    #toggle-button:hover {
+      background-color: rgb(162, 13, 142);
+      color: white;
+    }
+
+    #start-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgb(162, 13, 142);
+      color: white;
+      padding: 20px 40px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    #start-button:hover {
+      background-color: rgb(162, 13, 142);
+    }
+
+    #aframe-container {
+      display: none;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="start-button" onclick="showAFrame()">Start</div>
+
+  <div id="aframe-container">
+    <a-scene vr-mode-ui="enabled: true" loading-screen="false">
+      <a-assets>
+        <!-- Import the GLB files -->
+        <a-asset-item id="model-fb" src="assets/easy3fb.glb"></a-asset-item>
+        <a-asset-item id="model-cb" src="assets/easy3cb.glb"></a-asset-item>
+      </a-assets>
+
+      <!-- Cut button -->
+      <button id="toggle-button" class="button" onclick="toggleVisibility()">
+        CUT
+      </button>
+
+      <a-entity id="model1" class="model-container1" gltf-model="#model-fb" position="0.2 1.65 -0.30" rotation="0 120 0"
+        visible="true"></a-entity>
+      <a-entity id="model2" class="model-container2" gltf-model="#model-cb" position="0.2 1.65 -0.30" rotation="0 120 0"
+        visible="true"></a-entity>
+
+      <!-- Camera -->
+      <a-entity position="0 0.18 1">
+        <a-camera></a-camera>
+      </a-entity>
+    </a-scene>
+  </div>
+</body>
+
+</html>
